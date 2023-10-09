@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+//print
+void print_of_nodes(struct node *head)
+{
+    while(head!=NULL)
+    {
+        printf("Element:%d\n",head->data);
+        head=head->next;
+    }
+}
+//delete 1st
+struct node *delete_at_fist(struct node *head)
+{
+    struct node *ptr=head;
+    head=head->next;
+    free(ptr);
+    return head;
+}
+
+
+int main()
+{
+    struct node *head,*current,*thirt,*four;
+
+    head=malloc(sizeof(struct node));
+    current=malloc(sizeof(struct node));
+    thirt=malloc(sizeof(struct node));
+    four=malloc(sizeof(struct node));
+
+    head->data=20;
+    head->next=current;
+
+    current->data=25;
+    current->next=thirt;
+
+    thirt->data=30;
+    thirt->next=four;
+
+    four->data=35;
+    four->next=NULL;
+
+    printf("The linklist:\n");
+    print_of_nodes(head);
+
+    printf("Delete The 1st Node:\n");
+    head= delete_at_fist(head);
+    print_of_nodes(head);
+
+    return 0;
+}
